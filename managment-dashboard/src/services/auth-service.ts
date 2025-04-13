@@ -17,11 +17,7 @@ export const authService = {
   },
 
   refreshToken: async (token: string): Promise<AuthModel> => {
-    const response = await apiClient.post<AuthModel>('/auth/refresh-token', { token });
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
-    }
+    const response = await apiClient.post<AuthModel>('/auth/refreshToken', { refreshToken: token });
     return response.data;
   },
 

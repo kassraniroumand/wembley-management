@@ -68,23 +68,32 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("react", policyBuilder =>
+    // options.AddPolicy("react", policyBuilder =>
+    // {
+    //     policyBuilder.WithOrigins("http://localhost:5173");
+    //     policyBuilder.AllowAnyHeader();
+    //     policyBuilder.AllowAnyMethod();
+    //     policyBuilder.AllowCredentials();
+    // });
+
+    options.AddPolicy("global", policyBuilder =>
     {
-        policyBuilder.WithOrigins("http://localhost:5173");
+        policyBuilder.AllowAnyOrigin();
         policyBuilder.AllowAnyHeader();
         policyBuilder.AllowAnyMethod();
-        policyBuilder.AllowCredentials();
     });
 });
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Make Swagger available in all environments
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebMag API V1");
+    c.RoutePrefix = string.Empty; // To serve the Swagger UI at the app's root
+});
 
 // Seed the database with admin user and role
 using (var scope = app.Services.CreateScope())
@@ -99,6 +108,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("react");
+app.UseCors("global");
+// app.UseCors("react");
+
 
 app.Run();

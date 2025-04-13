@@ -41,6 +41,7 @@ import { MoreVertical, Plus, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { CategoryDTO } from "@/types";
+import { category } from "@/types/CONSTANT";
 
 export function CategoriesPage() {
   const navigate = useNavigate();
@@ -69,11 +70,12 @@ export function CategoriesPage() {
   };
 
   const goToCreateCategory = () => {
-    navigate("/categories/create");
+    navigate(category.categoriesCreateUrl);
+
   };
 
-  const goToEditCategory = (id: number) => {
-    navigate(`/categories/${id}/edit`);
+  const goToEditCategory = (id: any) => {
+    navigate(category.categoriesEditUrl(id));
   };
 
   const confirmDelete = (id: number) => {

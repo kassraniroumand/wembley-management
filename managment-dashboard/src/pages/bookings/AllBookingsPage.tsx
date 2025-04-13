@@ -21,6 +21,7 @@ import {
 import { Search } from "lucide-react";
 import { BookingStatus } from "@/types/BookingType";
 import { BookingsTable } from "@/components/tables/BookingsTable";
+import { event } from "@/types/CONSTANT";
 
 export function AllBookingsPage() {
   const navigate = useNavigate();
@@ -117,8 +118,9 @@ export function AllBookingsPage() {
     });
   };
 
-  const handleViewEvent = (eventId: number) => {
-    navigate(`/events/${eventId}`);
+  const handleViewEvent = (eventId: any) => {
+    navigate(event.eventsDetailUrl(eventId));
+
   };
 
   return (

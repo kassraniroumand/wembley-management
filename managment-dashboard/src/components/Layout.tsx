@@ -131,7 +131,6 @@ const Layout = () => {
           </header>
           <Outlet />
         </SidebarInset>
-
       </SidebarProvider>
     </div>
   )

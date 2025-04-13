@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getOrganizerTypeDisplayName } from "@/schema/organizerSchema";
 import { MoreVertical, Plus, Search } from "lucide-react";
+import { organization } from "@/types/CONSTANT";
 
 export function OrganizersPage() {
   const navigate = useNavigate();
@@ -58,15 +59,15 @@ export function OrganizersPage() {
   };
 
   const goToCreateOrganizer = () => {
-    navigate("/organizers/create");
+    navigate(organization.organizersCreateUrl);
   };
 
   const goToEditOrganizer = (id: string) => {
-    navigate(`/organizers/${id}/edit`);
+    navigate(`${organization.organizersListUrl}/${id}/edit`);
   };
 
   const goToViewOrganizer = (id: string) => {
-    navigate(`/organizers/${id}`);
+    navigate(`${organization.organizersListUrl}/${id}`);
   };
 
   // Calculate total pages

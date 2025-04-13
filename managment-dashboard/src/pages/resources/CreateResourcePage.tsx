@@ -2,16 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { ResourceForm } from "@/components/forms/ResourceForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { resource } from "@/types/CONSTANT";
 
 export function CreateResourcePage() {
   const navigate = useNavigate();
 
   const handleSuccess = () => {
-    navigate("/resources");
+    navigate(resource.resourcesListUrl);
+
   };
 
   const handleCancel = () => {
-    navigate("/resources");
+    navigate(resource.resourcesListUrl);
   };
 
   return (

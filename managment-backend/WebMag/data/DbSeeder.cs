@@ -22,7 +22,7 @@ namespace WebMag.data
             }
 
             // Create admin user if it doesn't exist
-            var adminEmail = "Admin123!";
+            var adminEmail = "adminEmail@gmail.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
             if (adminUser == null)

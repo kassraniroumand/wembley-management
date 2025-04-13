@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Calendar, Check, Eye, Ticket, X, Trash2 } from "lucide-react";
+import { Calendar, Check, Eye, X, Trash2 } from "lucide-react";
 import { BookingStatus, Booking } from "@/types/BookingType";
 
 export interface BookingActionsDialogProps {
@@ -31,8 +31,6 @@ export function BookingActionsDialog({
   onOpenChange,
   onViewBookingDetails,
   onViewEvent,
-  onConfirmBooking,
-  onCancelBooking,
   onDeleteBooking,
   setBookingToConfirm,
   setBookingToCancel,

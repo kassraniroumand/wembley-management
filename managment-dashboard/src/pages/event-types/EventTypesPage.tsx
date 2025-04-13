@@ -41,6 +41,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { MoreVertical, Plus, Search } from "lucide-react";
 import { EventTypeResourcesList } from "@/components/event-types/EventTypeResourcesList";
+import { eventType } from "@/types/CONSTANT";
 
 export function EventTypesPage() {
   const navigate = useNavigate();
@@ -59,15 +60,15 @@ export function EventTypesPage() {
   };
 
   const goToCreateEventType = () => {
-    navigate("/event-types/create");
+    navigate(eventType.eventTypesCreateUrl);
   };
 
-  const goToEventTypeDetails = (id: number) => {
-    navigate(`/event-types/${id}`);
+  const goToEventTypeDetails = (id: any) => {
+    navigate(eventType.eventTypesDetailUrl(id));
   };
 
-  const goToEditEventType = (id: number) => {
-    navigate(`/event-types/${id}/edit`);
+  const goToEditEventType = (id: any) => {
+    navigate(eventType.eventTypesEditUrl(id));
   };
 
   const confirmDelete = (id: number) => {

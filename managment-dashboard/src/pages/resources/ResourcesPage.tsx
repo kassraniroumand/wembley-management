@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Plus, Trash2, Edit, Eye } from "lucide-react";
 import { useState } from "react";
+import { resource } from "@/types/CONSTANT";
 
 export function ResourcesPage() {
   const navigate = useNavigate();
@@ -34,16 +35,18 @@ export function ResourcesPage() {
   const resources = Array.isArray(data) ? data : data?.resources || [];
 
   const goToCreateResource = () => {
-    navigate("/resources/create");
+    navigate(resource.resourcesCreateUrl);
+
   };
 
-  const goToEditResource = (id: number, e: React.MouseEvent) => {
+  const goToEditResource = (id: any, e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(`/resources/${id}/edit`);
+    navigate(resource.resourcesEditUrl(id));
   };
 
-  const goToViewResource = (id: number) => {
-    navigate(`/resources/${id}`);
+  const goToViewResource = (id: any) => {
+    navigate(resource.resourcesDetailUrl(id));
+
   };
 
   const confirmDeleteResource = (id: number, e: React.MouseEvent) => {
@@ -111,7 +114,7 @@ export function ResourcesPage() {
                   resources.map((resource) => (
                     <TableRow
                       key={resource.id}
-                      onClick={() => goToViewResource(resource.id)}
+
                       className="cursor-pointer hover:bg-gray-50"
                     >
                       <TableCell className="font-medium">{resource.name}</TableCell>
@@ -126,20 +129,6 @@ export function ResourcesPage() {
                       </TableCell>
                       <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-end space-x-1">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={(e) => goToViewResource(resource.id)}
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={(e) => goToEditResource(resource.id, e)}
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
                           <Button
                             variant="ghost"
                             size="icon"

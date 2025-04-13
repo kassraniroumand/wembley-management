@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { OrganizerForm } from "@/components/forms/OrganizerForm";
 import { Button } from "@/components/ui/button";
+import { organization } from "@/types/CONSTANT";
 
 export function CreateOrganizerPage() {
   const navigate = useNavigate();
 
   const handleSuccess = () => {
     // Show success toast or message
-    navigate("/organizers");
+    navigate(organization.organizersListUrl);
   };
 
   const handleCancel = () => {
-    navigate("/organizers");
+    navigate(organization.organizersListUrl);
   };
 
   return (

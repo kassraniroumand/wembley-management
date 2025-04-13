@@ -1,5 +1,4 @@
 import { authAtom } from '@/model/atoms';
-import { ApiService } from '@/lib/api';
 import { getDefaultStore } from 'jotai';
 import { authService } from '@/services';
 
@@ -22,6 +21,28 @@ export const login = async (email: string, password: string) => {
     return true;
   } catch (error) {
     console.error("Login failed", error);
+    return false;
+  }
+};
+
+export const refreshToken = async () => {
+  const currentAuth = store.get(authAtom);
+  const refreshTokenValue = currentAuth?.refreshToken;
+
+  if (!refreshTokenValue) {
+    return false;
+  }
+
+  try {
+    const response = await authService.refreshToken(refreshTokenValue);
+    store.set(authAtom, {
+      ...currentAuth,
+      token: response.token,
+      refreshToken: response.refreshToken
+    });
+    return true;
+  } catch (error) {
+    console.error("Token refresh failed", error);
     return false;
   }
 };

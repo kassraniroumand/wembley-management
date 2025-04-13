@@ -48,6 +48,7 @@ import { MoreVertical, Plus, Search, Calendar, Trash2, Globe, EyeOff, CheckCircl
 import { EventStatus } from "@/types";
 import { format } from "date-fns";
 import { Checkbox } from "@/components/ui/checkbox";
+import { event } from "@/types/CONSTANT";
 
 // Helper function to render status badge
 const getStatusBadge = (status: EventStatus) => {
@@ -115,15 +116,18 @@ export function EventsPage() {
   };
 
   const goToCreateEvent = () => {
-    navigate("/events/create");
+    navigate(event.eventsCreateUrl);
+
   };
 
-  const goToEventDetails = (id: number) => {
-    navigate(`/events/${id}`);
+  const goToEventDetails = (id: any) => {
+    navigate(event.eventsDetailUrl(id));
+
   };
 
-  const goToEditEvent = (id: number) => {
-    navigate(`/events/${id}/edit`);
+  const goToEditEvent = (id: any) => {
+    navigate(event.eventsEditUrl(id));
+
   };
 
   const confirmDelete = (id: number) => {
