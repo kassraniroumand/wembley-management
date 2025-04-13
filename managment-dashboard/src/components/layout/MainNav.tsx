@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Calendar, Menu, X } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { publicPages, auth } from "@/types/CONSTANT"
 
 export function MainNav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,12 +18,12 @@ export function MainNav() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-sm font-medium hover:text-primary">Home</Link>
-          <Link to="/about" className="text-sm font-medium hover:text-primary">About</Link>
-          <Link to="/contact" className="text-sm font-medium hover:text-primary">Contact</Link>
-          <Link to="/login" className="text-sm font-medium hover:text-primary">Login</Link>
+          <Link to={publicPages.homeUrl} className="text-sm font-medium hover:text-primary">Home</Link>
+          <Link to={publicPages.aboutUrl} className="text-sm font-medium hover:text-primary">About</Link>
+          <Link to={publicPages.contactUrl} className="text-sm font-medium hover:text-primary">Contact</Link>
+          <Link to={auth.loginUrl} className="text-sm font-medium hover:text-primary">Login</Link>
           <Button asChild>
-            <Link to="/register">Get Started</Link>
+            <Link to={auth.registerUrl}>Get Started</Link>
           </Button>
         </nav>
 
@@ -48,35 +49,35 @@ export function MainNav() {
               </div>
               <nav className="flex flex-col gap-4">
                 <Link
-                  to="/"
+                  to={publicPages.homeUrl}
                   className="text-lg font-medium hover:text-primary py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
-                  to="/about"
+                  to={publicPages.aboutUrl}
                   className="text-lg font-medium hover:text-primary py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   About
                 </Link>
                 <Link
-                  to="/contact"
+                  to={publicPages.contactUrl}
                   className="text-lg font-medium hover:text-primary py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
                 </Link>
                 <Link
-                  to="/login"
+                  to={auth.loginUrl}
                   className="text-lg font-medium hover:text-primary py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
                 </Link>
                 <Button asChild className="mt-4">
-                  <Link to="/register" onClick={() => setIsOpen(false)}>
+                  <Link to={auth.registerUrl} onClick={() => setIsOpen(false)}>
                     Get Started
                   </Link>
                 </Button>

@@ -55,9 +55,25 @@ export const dashboard = {
   reportsUrl: "/dashboard/reports"
 }
 
+export const bookings = {
+  myBookingsUrl: "/dashboard/my-bookings",
+  bookingsListUrl: "/dashboard/bookings",
+  bookingsCreateUrl: "/dashboard/bookings/create",
+  bookingsEditUrl: (id: string) => `/dashboard/bookings/edit/${id}`,
+  bookingsDetailUrl: (id: string) => `/dashboard/bookings/${id}`
+}
+
 export const settings = {
   mainUrl: "/dashboard/settings",
   accountUrl: "/dashboard/settings/account",
   securityUrl: "/dashboard/settings/security",
   notificationsUrl: "/dashboard/settings/notifications"
+}
+
+export const publicPages = {
+  homeUrl: "/",
+  aboutUrl: "/about",
+  contactUrl: "/contact",
+  loginUrl: "/auth/login",
+  registerUrl: "/auth/register"
 }

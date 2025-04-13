@@ -18,7 +18,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<EntityCountDTO>> GetEntityCounts()
     {
         var counts = await _analyticsService.GetEntityCountsAsync();
@@ -26,7 +26,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/events")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetEventCount()
     {
         var count = await _analyticsService.GetEventCountAsync();
@@ -34,7 +34,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/event-types")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetEventTypeCount()
     {
         var count = await _analyticsService.GetEventTypeCountAsync();
@@ -42,7 +42,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/resources")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetResourceCount()
     {
         var count = await _analyticsService.GetResourceCountAsync();
@@ -50,7 +50,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/resource-allocations")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetResourceAllocationCount()
     {
         var count = await _analyticsService.GetResourceAllocationCountAsync();
@@ -58,7 +58,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/organizers")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetOrganizerCount()
     {
         var count = await _analyticsService.GetOrganizerCountAsync();
@@ -66,7 +66,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/event-configurations")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetEventConfigurationCount()
     {
         var count = await _analyticsService.GetEventConfigurationCountAsync();
@@ -74,7 +74,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/event-type-resources")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetEventTypeResourceCount()
     {
         var count = await _analyticsService.GetEventTypeResourceCountAsync();
@@ -82,7 +82,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("counts/categories")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<int>> GetCategoryCount()
     {
         var count = await _analyticsService.GetCategoryCountAsync();
@@ -90,7 +90,7 @@ public class AnalyticsController : ControllerBase
     }
 
     [HttpGet("events/monthly/{year}")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<YearlyEventStatsDTO>> GetYearlyEventStats(int year)
     {
         var stats = await _analyticsService.GetYearlyEventStatsAsync(year);

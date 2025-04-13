@@ -24,34 +24,34 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-apiClient.interceptors.response.use(
-  (response) => response,
-  async (error: AxiosError) => {
-    console.log("error ---> ", error);
+// apiClient.interceptors.response.use(
+//   (response) => response,
+//   async (error: AxiosError) => {
+//     console.log("error ---> ", error);
 
-    const originalRequest = error.config;
+//     const originalRequest = error.config;
 
-    // Handle 401 Unauthorized errors by refreshing the token
+//     // Handle 401 Unauthorized errors by refreshing the token
 
-      originalRequest['_retry'] = true;
+//       originalRequest['_retry'] = true;
 
-      try {
-        // Attempt to refresh the token
-        const refreshSuccessful = await refreshToken();
+//       try {
+//         // Attempt to refresh the token
+//         const refreshSuccessful = await refreshToken();
 
-        if (refreshSuccessful) {
-          // Get the new token and update the request
-          const newToken = store.get(tokenAtom);
-          originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+//         if (refreshSuccessful) {
+//           // Get the new token and update the request
+//           const newToken = store.get(tokenAtom);
+//           originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
 
-          // Retry the original request with the new token
-          return apiClient(originalRequest);
-        }
-      } catch (refreshError) {
-        console.error('Token refresh failed:', refreshError);
-      }
-      return Promise.reject(error);
-    }
-);
+//           // Retry the original request with the new token
+//           return apiClient(originalRequest);
+//         }
+//       } catch (refreshError) {
+//         console.error('Token refresh failed:', refreshError);
+//       }
+//       return Promise.reject(error);
+//     }
+// );
 
 export default apiClient;

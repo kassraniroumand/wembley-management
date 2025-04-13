@@ -19,6 +19,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { useRegister } from "@/hooks"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 
 // Define the form schema based on RegisterModel
 const registerFormSchema = z.object({
@@ -56,6 +58,7 @@ type RegisterFormValues = z.infer<typeof registerFormSchema>
 
 export function Register() {
   const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   // Initialize form with react-hook-form and zod validation
   const form = useForm<RegisterFormValues>({
@@ -71,12 +74,30 @@ export function Register() {
     },
   })
 
+  const { mutate: register, isPending, isError } = useRegister()
+
   const onSubmit = (data: RegisterFormValues) => {
-    // Handle registration logic here
-    useRegister(data)
-    console.log("Registration attempt with:", data)
-    // Redirect to dashboard after successful registration
-    navigate("/dashboard")
+    // Reset any previous errors
+    setErrorMessage(null)
+
+    // Call the register mutation with user data
+    register({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    }, {
+      onSuccess: () => {
+        console.log("Registration successful")
+        // Redirect to dashboard after successful registration
+        navigate("/dashboard")
+      },
+      onError: (err: any) => {
+        console.error("Registration failed:", err)
+        setErrorMessage(err?.message || "Registration failed. Please try again.")
+      }
+    })
   }
 
   return (
@@ -214,9 +235,22 @@ export function Register() {
                     )}
                   />
                 </CardContent>
+
+                {errorMessage && (
+                  <div className="px-6 pb-4">
+                    <Alert variant="destructive">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>
+                        {errorMessage}
+                      </AlertDescription>
+                    </Alert>
+                  </div>
+                )}
+
                 <CardFooter className="flex flex-col space-y-4">
-                  <Button type="submit" className="w-full">
-                    Create account
+                  <Button type="submit" className="w-full" disabled={isPending}>
+                    {isPending ? "Creating account..." : "Create account"}
                   </Button>
                   <div className="text-center text-sm">
                     Already have an account?{" "}

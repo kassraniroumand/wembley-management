@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useBookings, useCancelBooking, useConfirmBooking } from "@/hooks/useBookings";
+import { useBookings, useCancelBooking, useConfirmBooking, useUserBookings } from "@/hooks/useBookings";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,8 @@ import {
 import { Search } from "lucide-react";
 import { BookingStatus } from "@/types/BookingType";
 import { BookingsTable } from "@/components/tables/BookingsTable";
+import { useAtom } from "jotai";
+import { authAtom } from "@/model/atoms";
 
 export function MyBookingsPage() {
   const navigate = useNavigate();
@@ -31,7 +33,9 @@ export function MyBookingsPage() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
   // Fetch my bookings data
-  const { data, isLoading, error } = useBookings(page, pageSize);
+  const [auth, _] = useAtom(authAtom);
+
+  const { data, isLoading, error } = useUserBookings(auth['email'], page, pageSize);
 
   // Mutations
   const { mutate: cancelBooking, isPending: isCancelling } = useCancelBooking();

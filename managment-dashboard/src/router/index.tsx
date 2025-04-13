@@ -10,6 +10,9 @@ import Region from '@/pages/region';
 import AddRoleToUser from '@/pages/AddRoleToUser';
 import Layout from '@/components/Layout';
 import { LandingPage } from '@/pages/LandingPage';
+import { AboutPage } from '@/pages/AboutPage';
+import { ContactPage } from '@/pages/ContactPage';
+import { organization, resource, event, user, auth, dashboard, settings, publicPages } from '@/types/CONSTANT';
 
 // Import organizer pages
 import { OrganizersPage } from '@/pages/organizers/OrganizersPage';
@@ -44,11 +47,19 @@ import Login from '@/pages/login';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: publicPages.homeUrl,
     element: <LandingPage />,
   },
   {
-    path: '/dashboard',
+    path: publicPages.aboutUrl.substring(1),
+    element: <AboutPage />,
+  },
+  {
+    path: publicPages.contactUrl.substring(1),
+    element: <ContactPage />,
+  },
+  {
+    path: dashboard.homeUrl.substring(1), // Remove leading slash
     element: <ProtectedRoute />,
     children: [
       {
@@ -182,11 +193,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
+    path: "login", // Remove leading slash
     element: <Login />,
   },
   {
-    path: '/register',
+    path: "auth/register", // Remove leading slash
     element: <Register />,
   },
   {

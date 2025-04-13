@@ -4,6 +4,8 @@ import { AddRoleModel, AuthModel, RegisterModel, TokenRequestModel, UserWithRole
 export const authService = {
   register: async (model: RegisterModel): Promise<AuthModel> => {
     const response = await apiClient.post<AuthModel>('/auth/register', model);
+    console.log("response ---> ", response);
+
     // if (response.data.token) {
     //   localStorage.setItem('token', response.data.token);
     //   localStorage.setItem('refreshToken', response.data.refreshToken);

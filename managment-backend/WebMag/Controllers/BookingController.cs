@@ -10,7 +10,7 @@ namespace WebMag.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+// [Authorize]
 public class BookingController : ControllerBase
 {
     private readonly IBookingService _bookingService;
@@ -86,7 +86,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpGet("event/{eventId}")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<BookingListResponseDTO>> GetEventBookings(int eventId, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
     {
         try
@@ -101,7 +101,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<BookingListResponseDTO>> GetAllBookings([FromQuery] int page = 1, [FromQuery] int pageSize = 20)
     {
         try
@@ -169,7 +169,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult> DeleteBooking(int id)
     {
         try

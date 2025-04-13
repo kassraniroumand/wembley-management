@@ -10,7 +10,7 @@ export const authKeys = {
 };
 
 // Hooks
-export const useRegister = (model: RegisterModel) => {
+export const useRegister = () => {
   return useMutation({
     mutationFn: (model: RegisterModel) => authService.register(model),
     onSuccess: () => {

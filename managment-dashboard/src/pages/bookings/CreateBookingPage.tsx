@@ -17,6 +17,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { bookings } from "@/types/CONSTANT";
 
 export function CreateBookingPage() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export function CreateBookingPage() {
             title: "Booking Confirmed",
             description: `Your booking has been created successfully.`,
           });
-          navigate("/my-bookings");
+          navigate(bookings.myBookingsUrl);
         },
         onError: (error) => {
           toast({
@@ -68,7 +69,7 @@ export function CreateBookingPage() {
   };
 
   const handleBack = () => {
-    navigate("/my-bookings");
+    navigate(bookings.bookingsCreateUrl);
   };
 
   const handleEventSelect = (eventId: string) => {
