@@ -86,14 +86,14 @@ export const router = createBrowserRouter([
             element: <AddRoleToUser />,
           },
           // Admin-only routes
-          {
-            path: 'users',
-            element: (
-              <AdminRoute>
-                <UsersPage />
-              </AdminRoute>
-            ),
-          },
+          // {
+          //   path: 'users',
+          //   element: (
+          //     <AdminRoute>
+          //       <UsersPage />
+          //     </AdminRoute>
+          //   ),
+          // },
           // Organizer routes
           {
             path: 'organizers',
@@ -193,7 +193,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "login", // Remove leading slash
+    path: "auth/login", // Remove leading slash
     element: <Login />,
   },
   {

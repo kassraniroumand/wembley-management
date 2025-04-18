@@ -3,6 +3,7 @@ import { EventTypeForm } from "@/components/forms/EventTypeForm";
 import { EventTypeFormValues } from "@/schema/eventTypeSchema";
 import { useCreateEventType } from "@/hooks/useEventTypes";
 import { useToast } from "@/components/ui/use-toast";
+import { eventType } from "@/types/CONSTANT";
 
 export function CreateEventTypePage() {
   const navigate = useNavigate();
@@ -19,7 +20,8 @@ export function CreateEventTypePage() {
           title: "Success",
           description: "Event type created successfully",
         });
-        navigate(`/event-types/${response.id}`);
+        // navigate(`/event-types/${response.id}`);
+        navigate(eventType.eventTypesDetailUrl(response.id.toString()))
       },
       onError: (error) => {
         console.error("Failed to create event type:", error);

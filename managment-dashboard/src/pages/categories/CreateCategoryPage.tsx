@@ -3,6 +3,7 @@ import { useCreateCategory } from "@/hooks/useCategories";
 import { CategoryForm } from "@/components/forms/CategoryForm";
 import { CategoryFormValues } from "@/schema/categorySchema";
 import { useToast } from "@/components/ui/use-toast";
+import { category } from "@/types/CONSTANT";
 
 export function CreateCategoryPage() {
   const navigate = useNavigate();
@@ -19,7 +20,8 @@ export function CreateCategoryPage() {
           title: "Success",
           description: "Category created successfully",
         });
-        navigate("/categories");
+        navigate(category.categoriesListUrl);
+
       },
       onError: (error) => {
         console.error("Failed to create category:", error);

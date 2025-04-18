@@ -219,7 +219,8 @@ export function EventForm({
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={"outline"}
+                        type="button"
+                        variant="outline"
                         className={cn(
                           "w-full pl-3 text-left font-normal",
                           !field.value && "text-muted-foreground"
@@ -234,12 +235,12 @@ export function EventForm({
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className="w-auto p-0" >
                     <CalendarComponent
                       mode="single"
                       selected={field.value ? new Date(field.value) : undefined}
                       onSelect={(date) => handleDateChange("startDate", date)}
-                      initialFocus
+                      // initialFocus
                     />
                   </PopoverContent>
                 </Popover>

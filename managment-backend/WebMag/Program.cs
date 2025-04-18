@@ -82,6 +82,12 @@ builder.Services.AddCors(options =>
         policyBuilder.AllowAnyHeader();
         policyBuilder.AllowAnyMethod();
     });
+    options.AddPolicy("react", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("http://localhost:5173");
+        policyBuilder.AllowAnyMethod();
+        policyBuilder.AllowAnyHeader();
+    } );
 });
 
 var app = builder.Build();
@@ -101,14 +107,16 @@ using (var scope = app.Services.CreateScope())
     await DbSeeder.SeedRolesAndAdminAsync(scope.ServiceProvider);
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.UseCors("global");
+app.UseCors("react");
+
 // app.UseCors("react");
 
 
