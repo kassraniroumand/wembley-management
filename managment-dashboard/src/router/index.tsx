@@ -197,6 +197,10 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "login", // Remove leading slash
+    element: <Login />,
+  },
+  {
     path: "auth/register", // Remove leading slash
     element: <Register />,
   },

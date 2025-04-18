@@ -160,8 +160,9 @@ const AddRoleToUserContent = () => {
     setIsSaving(true)
 
     try {
-      await ApiService.updateUserRole(editingUser.email, selectedRole)
-
+      const response = await ApiService.updateUserRole(editingUser.email, selectedRole)
+      console.log("response ---> ", response);
+      
       toast({
         title: "Role updated successfully",
         description: `Updated ${editingUser.userName}'s role to ${selectedRole}`,
@@ -176,9 +177,12 @@ const AddRoleToUserContent = () => {
         description: "There was a problem updating the user's role",
         variant: "destructive",
       })
+      setIsDialogOpen(false)
     } finally {
       setIsSaving(false)
+      setIsDialogOpen(false)
     }
+    setIsDialogOpen(false)
   }
 
   return (
